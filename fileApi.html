@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FileApi</title>
+</head>
+<body>
+<img src="preview" id="preview" alt="이미지 영역" />
+<input type="file" id="getfile" accept="image/*" />
+<script>
+    var file = document.querySelector("#getfile");
+    file.onchange = function() {
+        var fileList = file.files;
+
+        var reader = new FileReader();
+        reader.readAsDataURL(fileList[0]);
+
+        reader.onload = function() {
+            document.querySelector("#preview").src = reader.result;
+        }
+    }
+</script>
+</body>
+</html>
