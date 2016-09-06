@@ -92,6 +92,7 @@ function Item(parent) {
     this.UnCheckText = null;
     this.Text = null;
 
+    //텍스트 정렬방식
     this.PropertyTextAlign = ["LeftTop", "LeftMiddle", "LeftBottom", "CenterTop", "CenterMiddle", 
                                 "CenterBottom", "RightTop", "RightMiddle", "RightBottom"];
 
