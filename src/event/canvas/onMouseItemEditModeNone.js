@@ -20,28 +20,31 @@ $(document).on("mousedown", ".eventCanvas", function(e) {
 
                     $(e.target).parent().find('.ItemContainer').append(selectedElement);			
                 }
-            } else {
-                //each 벗어남
-                return true;
             }
         });
-
+        
+        if(selectedElement) {
+            createCursor($(this));
+        } else {
+            clearCursor();
+        }
     }    
 });
 
 $(document).on("mousemove", ".eventCanvas", function(e) {
     if(ItemEditMode == e_ItemEditMode_None) {
         var pos = mousePointToCanvas(e);
-        
-        if(selectedElement == null) {
-                        
-        } else {
+                                
+        if(selectedElement != null) {
             //선택된 객체가 있을 경우에는 객체 이동이나 크기를 변경
             var x_move_pos = pos.x - mouseDownInit.x + selectedElementInit.left;
             var y_move_pos = pos.y - mouseDownInit.y + selectedElementInit.top;
 
-            selectedElement.css('left', x_move_pos);
-            selectedElement.css('top', y_move_pos);
+            $(".cursorDiv").css('left', x_move_pos);
+            $(".cursorDiv").css('top', y_move_pos);
+
+            //selectedElement.css('left', x_move_pos);
+            //selectedElement.css('top', y_move_pos);
 
             //$(e.target).parent().find('.cursorDiv').css('left', x_move_pos);
             //$(e.target).parent().find('.cursorDiv').css('top', y_move_pos);				
@@ -50,9 +53,21 @@ $(document).on("mousemove", ".eventCanvas", function(e) {
 });
 
 $(document).on("mouseup", ".eventCanvas", function(e) {
-    clearMouseSelect();
+    if(ItemEditMode == e_ItemEditMode_None) {
+
+        selectedElement.css("left", $(".cursorDiv").css("left"));
+        selectedElement.css("top", $(".cursorDiv").css("top"));
+
+        clearMouseSelect();
+    }
 });
 
 $(document).on("mouseout", ".eventCanvas", function(e) {
-    clearMouseSelect();
+    if(ItemEditMode == e_ItemEditMode_None) {
+
+        selectedElement.css("left", $(".cursorDiv").css("left"));
+        selectedElement.css("top", $(".cursorDiv").css("top"));
+
+        clearMouseSelect();
+    }
 });

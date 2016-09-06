@@ -4,7 +4,7 @@ body.unselectable {-moz-user-select: none; -webkit-user-select: none; -ms-user-s
 #contentWrap {width:100%; height:100%; margin:20px 0;}
 
 /*cursor*/
-.cursorDiv {position:absolute; top:10px; left:10px; width:100px; height:100px; border:thin solid #0000FF; display:none;}
+.cursorDiv {position:absolute; border:thin solid #0000FF;}
 .cursorDiv .cursorDivRelative {width:100%; height:100%;}
 .cursorDiv .cursorDivRelative span {position:absolute; width:4px; height:4px; background-color:#FFFFFF; border:thin solid #0000FF; display:inline-block;}
 

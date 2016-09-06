@@ -1,0 +1,3 @@
+function clearCursor() {
+    $(".cursorDiv").remove();
+}
