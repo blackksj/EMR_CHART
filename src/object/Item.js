@@ -99,10 +99,10 @@ function Item(parent) {
 }
 
 Item.prototype.createElement = function() {
-    var item = $("<div />", {class: "Item"});
+    var item = $("<div />", {class: "Item", contenteditable: 'true'});
     this.element = item;
     
-    $(this.super.element).append(item);
+    $(this.super.element).find(".ItemContainer").prepend(item);
 }
 
 Item.prototype.createPropertyElement = function() {

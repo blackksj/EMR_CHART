@@ -1,3 +1,4 @@
+//Board > View > Page > Panel > Item
 var board = null;
 var views = [];
 

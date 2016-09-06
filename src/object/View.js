@@ -9,9 +9,10 @@ View.prototype.createElement = function() {
     var view = $("<div />", {class: "View"});
     this.element = view;
 
-    $(".View input[name=selected]").val(false);
-
-    view.append($("<input />", {type: "hidden", name: "selected", value: true}));
+    //check view_selected start
+    $(".View").removeClass("View_selected");
+    view.addClass("View_selected");
+    //check view_selected end
     
     $(".Board").prepend(view);
 }

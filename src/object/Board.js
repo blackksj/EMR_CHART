@@ -2,7 +2,7 @@ function Board(selector) {
     this.element = selector;
     this.views = [];
 
-    this.width = 750;
+    this.width = 726;
     this.height = null;
     this.sort = "ASC";
 

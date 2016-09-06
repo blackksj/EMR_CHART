@@ -27,7 +27,7 @@ function DataLoad(strVal) {
                     var astrVals4 = astrVals3[j].split("|^@1@^|");
                     
                     //page.push
-                    page[astrVals4[0]] = astrVals4[1];
+                    if(astrVals4[1]) page[astrVals4[0]] = astrVals4[1];
                 }
                 page.createPropertyElement();
                 break;
@@ -40,7 +40,7 @@ function DataLoad(strVal) {
                     var astrVals4 = astrVals3[j].split("|^@1@^|");
                     
                     //panel push
-                    panel[astrVals4[0]] = astrVals4[1];
+                    if(astrVals4[1]) panel[astrVals4[0]] = astrVals4[1];
                 }
                 panel.createPropertyElement();
                 page.panels.push(panel);
@@ -55,7 +55,7 @@ function DataLoad(strVal) {
                     var astrVals4 = astrVals3[j].split("|^@1@^|");
                     
                     //intem push
-                    item[astrVals4[0]] = astrVals4[1];
+                    if(astrVals4[1]) item[astrVals4[0]] = astrVals4[1];
                 }
                 item.createPropertyElement();
                 panel.items.push(item);

@@ -47,4 +47,7 @@ Panel.prototype.createPropertyElement = function() {
     for(var i=0; i<this.property.length; i++) {
         this.element.append($("<input />", {type: "hidden", name: this.property[i], value: this[this.property[i]]}));
     }
+
+    this.element.append($("<div />", {class: "ItemContainer"}));
+    this.element.append($("<canvas />", {class: "eventCanvas", width: this.Width, height: this.Height}));
 }
