@@ -2,15 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>EMR</title>
     <link rel="stylesheet" type="text/css" href="./css/main.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" media="screen" />
     <script src="./vendor/jquery-3.1.0.min.js"></script>
     <script src="./main.js"></script> 
 </head>
 <body class="unselectable">
 <canvas id="tempImage" style="display:none;"></canvas>
+<div id="controlWrap">
+    <div class="control">
+        <select name="font_family" id="font_family">
+            <option value="">폰트선택</option>
+            <option value="돋움">돋움</option>
+            <option value="돋움체">돋움체</option>
+            <option value="굴림">굴림</option>
+            <option value="굴림체">굴림체</option>
+            <option value="바탕체">바탕체</option>
+        </select>
+        <select name="font_size" id="font_size">
+            <option value="">사이즈선택</option>
+            <option value="1">10px</option>
+            <option value="2">12px</option>
+            <option value="3">14px</option>
+            <option value="4">16px</option>
+            <option value="5">20px</option>
+            <option value="6">30px</option>
+            <option value="7">40px</option>
+        </select>
+        <select name="font_color" id="font_color">
+            <option value="">색상선택</option>
+            <option value="black">검정</option>
+            <option value="blue">파랑</option>
+            <option value="red">빨강</option>
+            <option value="green">녹색</option>
+        </select>
+        <button class="fa fa-bold" id="font_bold" title="두껍게"></button>
+        <button class="fa fa-underline" id="font_underline" title="밑줄 긋기"></button>
+        <button class="fa fa-italic" id="font_italic" title="이탤릭"></button>
+        <button class="fa fa-trash" id="font_trash" title="선택 삭제"></button>
+        &nbsp;&nbsp;
+        <button class="fa fa-pencil" id="font_pencil" title="펜 모드"></button>
+        <button class="fa fa-font" id="font_font" title="텍스트 삽입"></button>
+        &nbsp;&nbsp;
+        <button class="fa fa-file-text" id="font_file-text" title="파일 가져오기"></button>
+        <button class="fa fa-file-image-o" id="font_file-image-o" title="이미지 삽입"></button>
+    </div>
+</div>
 <div id="contentWrap">
-    
-</div>    
+
+</div>
 </body>
 </html>

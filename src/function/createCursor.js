@@ -11,8 +11,8 @@ function createCursor(element) {
     var cursorRelative = $("<div />", {class: "cursorDivRelative"});
     cursor.append(cursorRelative);
 
-    cursorRelative.append($("<span />", {style:"left:-4px; top:-4px;"}));
-    cursorRelative.append($("<span />", {style:"right:-4px; top:-4px;"}));
-    cursorRelative.append($("<span />", {style:"left:-4px; bottom:-4px;"}));
-    cursorRelative.append($("<span />", {style:"right:-4px; bottom:-4px;"}));
+    cursorRelative.append($("<span />", {style:"left:-3px; top:-3px;"}));
+    cursorRelative.append($("<span />", {style:"right:-3px; top:-3px;"}));
+    cursorRelative.append($("<span />", {style:"left:-3px; bottom:-3px;"}));
+    cursorRelative.append($("<span />", {style:"right:-3px; bottom:-3px;"}));
 } 

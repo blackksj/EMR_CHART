@@ -1,7 +1,12 @@
-* {font-family:Dotum; font-size:14px; margin:0; padding:0;}
+* {font-family:Dotum; font-size:12px; margin:0; padding:0;}
 
 body.unselectable {-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; user-select: none;}
-#contentWrap {width:100%; height:100%; margin:20px 0;}
+
+#controlWrap {position:fixed; top:0; width:100%; background-color:#fff; z-index:9999999;}
+#controlWrap .control {padding:10px; width:700px; border:thin solid #004F8C; margin:0 auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+#controlWrap .control input, #controlWrap .control select {vertical-align: middle;}
+#controlWrap .control button {width:18px; height:18px; background-color:#fff; border:thin solid #333; vertical-align: middle; cursor:pointer;}
+#contentWrap {width:100%; height:100%; margin:70px 0 50px 0;}
 
 /*cursor*/
 .cursorDiv {position:absolute; border:thin solid #0000FF;}
@@ -10,7 +15,7 @@ body.unselectable {-moz-user-select: none; -webkit-user-select: none; -ms-user-s
 
 /**/
 .Board {margin:0 auto;}
-.Board .View {border:thin solid #004F8C; padding:1px; margin:20px 0 0 0; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+.Board .View {background-color:#eee; border:thin solid #004F8C; padding:1px; margin:20px 0 0 0; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
 
 .Board .View .Page_Title {color:#000; padding:2px; line-height:20px;}
 .Board .View_selected {background-color:#004F8C;}

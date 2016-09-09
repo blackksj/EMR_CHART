@@ -113,6 +113,8 @@ Item.prototype.createPropertyElement = function() {
     this.element.css("top", this.Y+"px");
     this.element.css("left", this.X+"px");
 
+    if(this.Style == "1") this.element.addClass("text");
+
     //text
     if(this.TextFont) this.element.css("font-size", this.TextFont.split(" ")[0]);
     if(this.TextFont) this.element.css("font-family", this.TextFont.split(" ")[1]);    
@@ -122,8 +124,10 @@ Item.prototype.createPropertyElement = function() {
     
     this.element.css("text-align", textAlign.replace(/top|middle|bottom/, ""));
     this.element.css("vertical-align", textAlign.replace(/left|center|right/, ""));
-    this.element.css("line-height", this.TextCTextLineSpacingolor || "20px");
+    this.element.css("line-height", this.TextCTextLineSpacingolor || "14px");
 
+    //|^@^| -> <br />로 변경
+    while (this.Text.indexOf("|^@^|") > -1) {this.Text = this.Text.replace("|^@^|", "<br />");}
     this.element.html(this.Text);
 
     for(var i=0; i<this.property.length; i++) {
