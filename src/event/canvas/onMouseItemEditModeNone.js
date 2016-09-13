@@ -1,5 +1,7 @@
 //객체를 선택하고 이동
 $(document).on("mousedown", ".eventCanvas", function(e) {
+    //마우스 오른쪽 클릭 반응 멈춤
+    if(e.which == 3) {return;}
 
     //커서가 존재하는 상태에서 커서와 마우스와의 관계 체크
     if($(e.target).parent().find('.cursorDiv').length) {
@@ -134,6 +136,9 @@ $(document).on("mousemove", ".eventCanvas", function(e) {
 });
 
 $(document).on("mouseup", ".eventCanvas", function(e) {
+    //마우스 오른쪽 클릭 반응 멈춤
+    if(e.which == 3) {return;}
+    
     if(ItemEditMode == e_ItemEditMode_None) {
 
         if(selectedElement) {
@@ -164,6 +169,8 @@ $(document).on("dblclick", ".eventCanvas", function(e) {
 
         $($(this).parent().find(".Item").get().reverse()).each(function() {
             if(selectedElement == null) {
+                if($(this).attr("contenteditable") != "true") return;
+                
                 if (pos.y > $(this).position().top
                     && pos.y < $(this).position().top + $(this).height()
                     && pos.x > $(this).position().left && pos.x < $(this).position().left + $(this).width()) {

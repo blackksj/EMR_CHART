@@ -6,7 +6,7 @@ function Panel(parent) {
                     "IsPrintable", "ExpandTitle", "IsExpandable", "IsExpanded", "ExPageKey", 
                     "IsPrintExpand", "BackImageString", "BackImageWidth", "RunPageAdd", "RunPageLoad", 
                     "RunPageSave", "IsUserSizable", "UserMinHeight", "UserMaxHeight", "Value", 
-                    "BackImageAngle"];
+                    "BackImageAngle", "Pens"];
 
     this.PageKey = null;
     this.Key = null;
@@ -30,7 +30,7 @@ function Panel(parent) {
     this.Value = null;
     this.BackImageAngle = null;
 
-    this.createElement();
+    this.Pens = null;   //펜툴의 경우 Panel에 종속되어 있음(구버전 호환성)
 }
 
 Panel.prototype.createElement = function() {
@@ -48,6 +48,47 @@ Panel.prototype.createPropertyElement = function() {
         this.element.append($("<input />", {type: "hidden", name: this.property[i], value: this[this.property[i]]}));
     }
 
+    if(this.BackImageString) {
+        this.element.append($("<img />", {class: "panelImage", width: this.Width, height: this.Height, src:this.BackImageString}));
+    }
+
     this.element.append($("<div />", {class: "ItemContainer"}));
+
+    //Pen Start(구버전 호환성)
+    if(this.Pens) {//펜툴 그리기
+        var penCanvas = $("<canvas />", {class: "penCanvas", width: this.Width, height: this.Height});
+        penCanvas.attr("width", this.Width);
+        penCanvas.attr("height", this.Height);
+        var penContext = penCanvas[0].getContext("2d");
+        this.element.append(penCanvas);
+
+        var pens = this.Pens.split("|^@@^|");
+        for(var i=0; i<pens.length; i++) {
+
+            var nWidth = 1;
+            penContext.beginPath();
+            var pen = pens[i].split("|^@^|");
+
+            var penLineGroup = pen[1].split(":");
+            for(var j=0; j<penLineGroup.length; j++) {
+                var penLine = penLineGroup[j].split(",");
+
+                if (j == 0) {
+                    penContext.moveTo(penLine[0], penLine[1]);
+                } else {
+                    penContext.lineTo(penLine[0], penLine[1]);
+                }
+
+                nWidth = penLine[2];
+            }
+
+            penContext.strokeStyle = pen[0];
+            penContext.lineWidth = nWidth;
+            penContext.lineCap = "butt";
+            penContext.stroke();
+            penContext.closePath();
+        }
+    }
+    //Pen End
     this.element.append($("<canvas />", {class: "eventCanvas", width: this.Width, height: this.Height}));
 }

@@ -41,6 +41,7 @@ function DataLoad(strVal) {
                     //panel push
                     if(astrVals4[1]) panel[astrVals4[0]] = astrVals4[1];
                 }
+                panel.createElement();
                 panel.createPropertyElement();
                 page.panels.push(panel);
                 
@@ -56,6 +57,7 @@ function DataLoad(strVal) {
                     //intem push
                     if(astrVals4[1]) item[astrVals4[0]] = astrVals4[1];
                 }
+                item.createElement();
                 item.createPropertyElement();
                 panel.items.push(item);
                 break;

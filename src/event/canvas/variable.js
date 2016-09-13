@@ -5,6 +5,9 @@ var selectedLastElement = null;
 //선택했을 당시의 Element 저장
 var selectedElementInit = {};
 
+//마우스 오른쪽 버튼으로 선택된 Element 저장
+var selectedContextElement = null;
+
 
 var mouseCursorStyle = null;
 var objectCursorInit = {};

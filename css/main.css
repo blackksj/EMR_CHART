@@ -11,7 +11,7 @@ body.unselectable {-moz-user-select: none; -webkit-user-select: none; -ms-user-s
 /*cursor*/
 .cursorDiv {position:absolute; border:thin solid #0000FF;}
 .cursorDiv .cursorDivRelative {width:100%; height:100%;}
-.cursorDiv .cursorDivRelative span {position:absolute; width:4px; height:4px; background-color:#FFFFFF; border:thin solid #0000FF; display:inline-block;}
+.cursorDiv .cursorDivRelative span {position:absolute; width:4px; height:4px; background-color:#fff; border:thin solid #0000FF; display:inline-block;}
 
 /**/
 .Board {margin:0 auto;}
@@ -23,5 +23,12 @@ body.unselectable {-moz-user-select: none; -webkit-user-select: none; -ms-user-s
 
 .Board .View .Page {border:thin solid #004F8C; background-color:#fff;}
 .Board .View .Page .Panel {position:relative; margin:0 auto; overflow:hidden;}
-.Board .View .Page .Panel .Item {position:absolute; border:thin solid #ccc; display:inline-block;}
+.Board .View .Page .Panel .Item {position:absolute; display:inline-block; overflow:hidden;}
+.Board .View .Page .Panel .Item input {vertical-align:middle;}
+.Board .View .Page .Panel .panelImage {position:absolute;}
+.Board .View .Page .Panel .penCanvas {position:absolute;}
 .Board .View .Page .Panel .eventCanvas {position:absolute;}
+
+.rightClickContextMenu {position:absolute; border:thin solid #000; border-radius:3px; background-color:#efefef; z-index:999999; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+.rightClickContextMenu li {list-style:none; padding:3px 5px;}
+.rightClickContextMenu li.active {color:#fff; background-color:#004F8C;}

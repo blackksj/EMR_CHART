@@ -94,42 +94,71 @@ function Item(parent) {
 
     //텍스트 정렬방식
     this.PropertyTextAlign = ["LeftTop", "LeftMiddle", "LeftBottom", "CenterTop", "CenterMiddle", 
-                                "CenterBottom", "RightTop", "RightMiddle", "RightBottom"];
-
-    this.createElement();    
+                                "CenterBottom", "RightTop", "RightMiddle", "RightBottom"]; 
 }
 
 Item.prototype.createElement = function() {
-    var item = $("<div />", {class: "Item", contenteditable: 'true'});
-    this.element = item;
-    
+    if(this.BackImageString) {//BackImageString(이미지)
+        var item = $("<img />", {class: "Item", src: this.BackImageString});
+        this.element = item;
+    } else {
+        var item = $("<div />", {class: "Item"});
+        this.element = item;
+    }
+        
     $(this.super.element).find(".ItemContainer").prepend(item);
 }
 
 Item.prototype.createPropertyElement = function() {
+    //속성을 설정한다.
+    
+    if(this.Style == "1" && !this.BackImageString) this.element.addClass("text");
+    if(this.Style == "2" && !this.BackImageString) this.element.addClass("checkbox");
+    if(this.BackImageString) this.element.addClass("image");
+
     //position
     this.element.css("width", this.Width+"px");
     this.element.css("height", this.Height+"px");
     this.element.css("top", this.Y+"px");
     this.element.css("left", this.X+"px");
 
-    if(this.Style == "1") this.element.addClass("text");
-
     //text
     if(this.TextFont) this.element.css("font-size", this.TextFont.split(" ")[0]);
     if(this.TextFont) this.element.css("font-family", this.TextFont.split(" ")[1]);    
     if(this.TextColor) this.element.css("color", this.TextColor);
+    if(this.BackColor) this.element.css("background-color", this.BackColor);
     //this.Style 1:Text, 2:CheckBox
-    var textAlign = this.PropertyTextAlign[this.TextAlign].toLowerCase();
     
+    var textAlign = this.PropertyTextAlign[this.TextAlign].toLowerCase();    
     this.element.css("text-align", textAlign.replace(/top|middle|bottom/, ""));
     this.element.css("vertical-align", textAlign.replace(/left|center|right/, ""));
+
     this.element.css("line-height", this.TextCTextLineSpacingolor || "14px");
 
-    //|^@^| -> <br />로 변경
-    while (this.Text.indexOf("|^@^|") > -1) {this.Text = this.Text.replace("|^@^|", "<br />");}
-    this.element.html(this.Text);
+    if(this.IsBorderLeft) this.element.css("border-left", this.BorderWidth+"px");
+    if(this.IsBorderRight) this.element.css("border-right", this.BorderWidth+"px");
+    if(this.IsBorderTop) this.element.css("border-top", this.BorderWidth+"px");
+    if(this.IsBorderBottom) this.element.css("border-bottom", this.BorderWidth+"px");
+    this.element.css("border-style", "solid");
+    if(this.BorderColor) this.element.css("border-color", this.BorderColor);
+    
+    //contenteditable attr config
+    if(this.Style == "1" && this.Edit == "true") {
+        this.element.attr("contenteditable", true);
+        //this.element.css("background-color", "#FFFFDF"); 배경색이 바껴야 할까? 
+    }
 
+    //|^@^| -> <br />로 변경
+    if(this.Style == "1") {
+        if(this.Text) while (this.Text.indexOf("|^@^|") > -1) {this.Text = this.Text.replace("|^@^|", "<br />");}
+        this.element.html(this.Text);
+    }
+
+    //checkbox
+    if(this.Style == "2") {
+        this.element.html("<input type='checkbox' />"+this.Text);
+    }
+    
     for(var i=0; i<this.property.length; i++) {
         this.element.append($("<input />", {type: "hidden", name: this.property[i], value: this[this.property[i]]}));
     }
