@@ -1,5 +1,6 @@
 //객체를 선택하고 이동
 $(document).on("mousedown", ".eventCanvas", function(e) {
+    console.log("====");
     //마우스 오른쪽 클릭 반응 멈춤
     if(e.which == 3) {return;}
 

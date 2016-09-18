@@ -42,7 +42,14 @@ $(document).on("mouseleave", ".rightClickContextMenu li", function() {
 });
 
 $(document).on("click", ".rightClickContextMenu li", function() {
-    selectedContextElement.html("test");
+    selectedContextElement.find(".selectBox").remove();
+    if(!selectedContextElement.find(".selectBox").length) {
+        var selectBox = $("<div />", {class: "selectBox"});
+        selectBox.html($(this).text());
+        selectedContextElement.append(selectBox);
+    }
+    selectedContextElement.find("input[name=Text]").val($(this).text());
+    $(this).parent().remove();
 });
 
 $(document).on("mouseleave", ".rightClickContextMenu", function() {
