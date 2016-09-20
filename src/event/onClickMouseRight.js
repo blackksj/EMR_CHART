@@ -17,7 +17,8 @@ $(document).on("contextmenu", ".eventCanvas", function(e) {
 
                     var arrClickRight = clickRight.split("|^@@^|");
                     var arrContextMenu = arrClickRight[1].split("|^@^|");
-
+                    
+                    //팝업선택창 생성
                     if(arrContextMenu[0] == "LIST") {
                         var contextMenu = "<ul class='rightClickContextMenu' style='left:"+(event.pageX - 5)+"px; top:"+(event.pageY - 5)+"px;'>";
                         for(var i=1; i<arrContextMenu.length; i++) {
@@ -44,7 +45,7 @@ $(document).on("mouseleave", ".rightClickContextMenu li", function() {
 $(document).on("click", ".rightClickContextMenu li", function() {
     selectedContextElement.find(".selectBox").remove();
     if(!selectedContextElement.find(".selectBox").length) {
-        var selectBox = $("<div />", {class: "selectBox"});
+        var selectBox = $("<span />", {class: "selectBox"});
         selectBox.html($(this).text());
         selectedContextElement.append(selectBox);
     }

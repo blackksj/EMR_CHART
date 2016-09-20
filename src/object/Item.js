@@ -2,21 +2,7 @@ function Item(parent) {
     this.super = parent;
     this.element = null;
     //this.items = []; 자식 아이템을 갖는 경우가 있는지 아직 확인안됨
-    this.property = ["PageKey", "PanelKey", "ParentItemKey", "Key", "DataKey", 
-                    "Style", "Edit", "IsSelectable", "IsPrintable", "X", 
-                    "Y", "Width", "Height", "Angle", "BackColor", 
-                    "BackImageString", "BorderColor", "BorderWidth", "BorderDash", "InLineStyle", 
-                    "InLineColor", "InLineDash", "InLineWidth", "InLineCap", "Checked", 
-                    "CheckGroup", "CheckBoxStyle", "CheckBoxAlign", "CheckBoxColor", "CheckBoxWidth", 
-                    "CheckBoxHeight", "CheckBoxLineWidth", "CheckStyle", "CheckValue", "CheckForeColor", 
-                    "CheckBackColor", "CheckLineWidth", "UnCheckStyle", "UnCheckValue", "UnCheckForeColor", 
-                    "UnCheckBackColor", "UnCheckLineWidth", "TextFont", "TextColor", "TextAlign", 
-                    "TextLineSpacing", "TextBorder", "TextMaxLine", "IsViewOutBound", "IsViewText", 
-                    "IsVisible", "IsBorderLeft", "IsBorderRight", "IsBorderTop", "IsBorderBottom", 
-                    "IsUserSizable", "ChangeHeightItem", "ChangeTopItem", "TextFormat", "EditOnly", 
-                    "ClickLeft", "ClickRight", "ChangedValue", "TabFrom", "TabTo", 
-                    "TabEnterFrom", "TabEnterTo", "IsIncomplete", "IncompleteKey", "IsWrap", 
-                    "CheckText", "UnCheckText", "Text"];
+    this.property = itemProperty;
 
     this.PageKey = null;
     this.PanelKey = null;
@@ -111,29 +97,63 @@ Item.prototype.createElement = function() {
 
 Item.prototype.createPropertyElement = function() {
     //속성을 설정한다.
+
+    this.element.addClass("ItemKey_"+this.Key);
     
     if(this.Style == "1" && !this.BackImageString) this.element.addClass("text");
     if(this.Style == "2" && !this.BackImageString) this.element.addClass("checkbox");
     if(this.BackImageString) this.element.addClass("image");
 
     //position
-    this.element.css("width", this.Width+"px");
+    this.element.css("width", (this.Width-1)+"px");//이전 소스의 경우 1px을 줄여야 선이 맞음.
     this.element.css("height", this.Height+"px");
     this.element.css("top", this.Y+"px");
     this.element.css("left", this.X+"px");
 
+    //text align
+    var textAlign = this.PropertyTextAlign[this.TextAlign].toLowerCase();
+    var align = textAlign.replace(/top|middle|bottom/, "");
+    var valign = textAlign.replace(/left|center|right/, "");
+    this.element.css("text-align", align);
+    this.element.css("vertical-align", valign);
+
     //text
-    if(this.TextFont) this.element.css("font-size", this.TextFont.split(" ")[0]);
-    if(this.TextFont) this.element.css("font-family", this.TextFont.split(" ")[1]);    
+    if(this.TextFont) {
+        if(this.TextFont.split(" ").length == 2) {
+            this.element.css("font-family", this.TextFont.split(" ")[1]);
+            this.element.css("font-size", this.TextFont.split(" ")[0]);
+            if(this.Text) {
+                if(this.TextLineSpacing == 0) {
+                    if (this.Text.indexOf("|^@^|") > -1) {
+                        //this.element.css("line-height", "14px");
+                    } else {
+                        if(valign == "middle") this.element.css("line-height", this.Height + "px");
+                    }
+                }
+            }
+
+        }
+
+        if(this.TextFont.split(" ").length == 3) {
+            this.element.css("font-family", this.TextFont.split(" ")[2]);
+            this.element.css("font-size", this.TextFont.split(" ")[1]);
+            this.element.css("line-height", this.TextFont.split(" ")[1]);
+            if(this.Text) {
+                if(this.TextLineSpacing == 0) {
+                    if (this.Text.indexOf("|^@^|") > -1) {
+                        //this.element.css("line-height", "14px");
+                    } else {
+                        if(valign == "middle") this.element.css("line-height", this.Height + "px");
+                    }
+                }
+            }
+            if(this.TextFont.split(" ")[0] == "bold") this.element.css("font-weight", "bold");
+        }
+    }
+
     if(this.TextColor) this.element.css("color", this.TextColor);
     if(this.BackColor) this.element.css("background-color", this.BackColor);
     //this.Style 1:Text, 2:CheckBox
-    
-    var textAlign = this.PropertyTextAlign[this.TextAlign].toLowerCase();    
-    this.element.css("text-align", textAlign.replace(/top|middle|bottom/, ""));
-    this.element.css("vertical-align", textAlign.replace(/left|center|right/, ""));
-
-    this.element.css("line-height", this.TextCTextLineSpacingolor || "14px");
 
     if(this.IsBorderLeft) this.element.css("border-left", this.BorderWidth+"px");
     if(this.IsBorderRight) this.element.css("border-right", this.BorderWidth+"px");
@@ -145,7 +165,7 @@ Item.prototype.createPropertyElement = function() {
     //contenteditable attr config
     if(this.Style == "1" && this.Edit == "true") {
         this.element.attr("contenteditable", true);
-        //this.element.css("background-color", "#FFFFDF"); 배경색이 바껴야 할까? 
+        //this.element.css("background-color", "#FFFFDF"); //배경색이 바껴야 할까?
     }
 
     //|^@^| -> <br />로 변경
@@ -158,7 +178,7 @@ Item.prototype.createPropertyElement = function() {
     if(this.Style == "2") {
         this.element.html("<input type='checkbox' />"+this.Text);
     }
-    
+
     for(var i=0; i<this.property.length; i++) {
         this.element.append($("<input />", {type: "hidden", name: this.property[i], value: this[this.property[i]]}));
     }

@@ -1,10 +1,6 @@
 $(document).on("mousedown", ".eventCanvas", function(e) {
     //마우스 오른쪽 클릭 반응 멈춤
     if(e.which == 3) {return;}
-
-    if(ItemEditMode == e_ItemEditMode_Cursor) {
-        console.log("test");
-    }    
 });
 
 $(document).on("mousemove", ".eventCanvas", function(e) {

@@ -22,7 +22,7 @@ $(function() {
     $("#font_size").on("change", function() {
         document.execCommand("fontSize", false, $(this).val());
 
-        $(selectedLastElement).find("font").each(function() {
+            $(selectedLastElement).find("font").each(function() {
             if($(this).attr("size") == 1) {$(this).css("font-size", "10px"); $(this).css("line-height", "10px");}
             if($(this).attr("size") == 2) {$(this).css("font-size", "12px"); $(this).css("line-height", "12px");}
             if($(this).attr("size") == 3) {$(this).css("font-size", "14px"); $(this).css("line-height", "14px");}
@@ -33,6 +33,8 @@ $(function() {
 
             $(this).removeAttr("size");
         });
+
+        textHeightChange();
     });
     $("#font_color").on("change", function() {
         document.execCommand("foreColor", false, $(this).val());
@@ -51,5 +53,16 @@ $(function() {
     });
     $("#font_italic").on("click", function() {
         document.execCommand("italic", false, true);
+    });
+
+    $("#font_text").on("click", function() {
+        clearText();
+        clearCursor();
+
+        ItemEditMode = e_ItemEditMode_Text;
+    });
+
+    $("#image_load").on("change", function() {
+        console.log($(this).files);
     });
 });
