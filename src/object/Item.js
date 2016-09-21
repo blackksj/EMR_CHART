@@ -106,7 +106,7 @@ Item.prototype.createPropertyElement = function() {
 
     //position
     this.element.css("width", (this.Width-1)+"px");//이전 소스의 경우 1px을 줄여야 선이 맞음.
-    this.element.css("height", this.Height+"px");
+    this.element.css("height", (this.Height-1)+"px");//이전 소스의 경우 1px을 줄여야 선이 맞음.
     this.element.css("top", this.Y+"px");
     this.element.css("left", this.X+"px");
 

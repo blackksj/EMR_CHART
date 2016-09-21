@@ -2,10 +2,14 @@
 var board = null;
 var views = [];
 
+//이미지 임시로 저장
+var tempImage = null;
+
 $(function() {
     board = new Board(document.querySelector("#contentWrap"));
     board.setSort("DESC");
-
+    
+    //폰트 선택
     $("#font_family").on("change", function() {
         document.execCommand("FontName", false, $(this).val());
 
@@ -19,6 +23,8 @@ $(function() {
             $(this).removeAttr("face");
         });
     });
+    
+    //폰트사이즈 선택
     $("#font_size").on("change", function() {
         document.execCommand("fontSize", false, $(this).val());
 
@@ -36,6 +42,8 @@ $(function() {
 
         textHeightChange();
     });
+    
+    //폰트색상 선택
     $("#font_color").on("change", function() {
         document.execCommand("foreColor", false, $(this).val());
 
@@ -44,25 +52,49 @@ $(function() {
 
             $(this).removeAttr("color");
         });
-    });    
+    });
+
+    //폰트 Bold
     $("#font_bold").on("click", function() {
         document.execCommand("bold", false, true);
-    });  
+    });
+
+    //폰트 underline
     $("#font_underline").on("click", function() {
         document.execCommand("underline", false, true);
     });
+
+    //폰트 italic
     $("#font_italic").on("click", function() {
         document.execCommand("italic", false, true);
     });
 
+    //펜 드로잉
+    $("#font_pencil").on("click", function() {
+        clearText();
+        clearCursor();
+
+        ItemEditMode = e_ItemEditMode_Pen;
+    });
+    
+    //폰트 삽입
     $("#font_text").on("click", function() {
         clearText();
         clearCursor();
 
         ItemEditMode = e_ItemEditMode_Text;
     });
-
+    
+    //이미지 불러오기
     $("#image_load").on("change", function() {
-        console.log($(this).files);
+        var fileList = $(this)[0].files;
+
+        var reader = new FileReader();
+        reader.readAsDataURL(fileList[0]);
+
+        reader.onload = function() {
+            tempImage = reader.result;
+            ItemEditMode = e_ItemEditMode_Image;
+        }
     });
 });

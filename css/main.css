@@ -17,7 +17,7 @@ body.unselectable {-moz-user-select: none; -webkit-user-select: none; -ms-user-s
 .Board {margin:0 auto;}
 .Board .View {background-color:#eee; border:thin solid #004F8C; padding:1px; margin:20px 0 0 0; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
 
-.Board .View .Page_Title {color:#000; padding:2px; line-height:20px;}
+.Board .View .Page_Title {font-size:12px; color:#000; padding:2px; line-height:20px;}
 .Board .View_selected {background-color:#004F8C;}
 .Board .View_selected .Page_Title {font-size:12px; color:#fff;}
 

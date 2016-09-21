@@ -4,7 +4,7 @@ $(document).on("mousedown", ".eventCanvas", function(e) {
     if(e.which == 3) {return;}
 
     //커서가 존재하는 상태에서 커서와 마우스와의 관계 체크
-    if($(e.target).parent().find('.cursorDiv').length) {
+    if(ItemEditMode == e_ItemEditMode_None && $(e.target).parent().find('.cursorDiv').length) {
         //mouseDownInit 객체 선택시의 초기 상태를 기억
         var pos = mouseDownInit = mousePointToCanvas(e);
 
@@ -42,11 +42,12 @@ $(document).on("mousedown", ".eventCanvas", function(e) {
         } else {
             mouseCursorStyle = null;
         }
-    }
 
-    if(ItemEditMode != e_ItemEditMode_Cursor) {
-        clearCursor();
-        clearText();
+        //커서위 가장자리가 선택되지 않았을 경우 커서 삭제
+        if(ItemEditMode != e_ItemEditMode_Cursor) {
+            clearCursor();
+            clearText();
+        }
     }
 
     if(ItemEditMode == e_ItemEditMode_None) {
@@ -156,10 +157,9 @@ $(document).on("mousemove", ".eventCanvas", function(e) {
 });
 
 $(document).on("mouseup", ".eventCanvas", function(e) {
-    //마우스 오른쪽 클릭 반응 멈춤
-    if(e.which == 3) {return;}
-
     if(ItemEditMode == e_ItemEditMode_None) {
+        //마우스 오른쪽 클릭 반응 멈춤
+        if(e.which == 3) {return;}
 
         if(selectedElement) {
             selectedElement.css("left", $(".cursorDiv").css("left"));

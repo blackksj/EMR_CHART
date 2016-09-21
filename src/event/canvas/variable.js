@@ -22,6 +22,8 @@ var mouseDownInit = {};
 var e_ItemEditMode_None = 0;
 var e_ItemEditMode_Cursor = 1;  //커서를 컨트롤 하기 위한 모드
 var e_ItemEditMode_Text = 2;    //텍스트 모드
+var e_ItemEditMode_Image = 3;   //이미지 모드
+var e_ItemEditMode_Pen = 4;   //펜 모드
 
 /*
 var e_ItemEditMode_Add = 1;

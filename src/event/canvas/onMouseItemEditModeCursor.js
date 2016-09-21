@@ -185,10 +185,10 @@ $(document).on("mousemove", ".eventCanvas", function(e) {
 });
 
 $(document).on("mouseup", ".eventCanvas", function(e) {
-    //마우스 오른쪽 클릭 반응 멈춤
-    if(e.which == 3) {return;}
-    
     if(ItemEditMode == e_ItemEditMode_Cursor) {
+        //마우스 오른쪽 클릭 반응 멈춤
+        if(e.which == 3) {return;}
+
         selectedLastElement.css('width', $(e.target).parent().find('.cursorDiv').css('width'));
         selectedLastElement.css('height', $(e.target).parent().find('.cursorDiv').css('height'));
         selectedLastElement.css('left', $(e.target).parent().find('.cursorDiv').css('left'));

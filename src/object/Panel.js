@@ -56,6 +56,7 @@ Panel.prototype.createPropertyElement = function() {
 
     //Pen Start(구버전 호환성)
     if(this.Pens) {//펜툴 그리기
+        //기존 서식에 있는 펜을 그리기 위한 캔버스
         var penCanvas = $("<canvas />", {class: "penCanvas", width: this.Width, height: this.Height});
         penCanvas.attr("width", this.Width);
         penCanvas.attr("height", this.Height);
