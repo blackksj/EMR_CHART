@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>EMR</title>
-    <link rel="stylesheet" type="text/css" href="./css/main.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./css/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/jquery-ui-timepicker-addon.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
     <script src="./vendor/jquery-3.1.0.min.js"></script>
+    <script src="./vendor/jquery-ui.min.js"></script>
+    <script src="./vendor/jquery-ui-timepicker-addon.min.js"></script>
     <script src="./main.js"></script> 
 </head>
 <body class="unselectable">
@@ -46,13 +50,20 @@
         <button class="fa fa-pencil" id="font_pencil" title="펜 모드"></button>
         <button class="fa fa-font" id="font_text" title="텍스트 삽입"></button>
         &nbsp;&nbsp;
-        <button class="fa fa-file-text" id="font_file-text" title="파일 가져오기"></button>
+        <input type="file" id="sheet_load" accept="*/*" value="서식" />
         <!--button class="fa fa-file-image-o" id="font_file-image-o" title="이미지 삽입"></button-->
         <input type="file" id="image_load" accept="image/*" value="이미지" />
     </div>
 </div>
 <div id="contentWrap">
-
+    <div class="fileListFixWrap">
+        <div class="fileList">
+            <ul class="list">
+                <li><input type="hidden" name="path" value="83908_11_간호일지.emr" />83908_11_간호일지</li>
+                <li><input type="hidden" name="path" value="58868_9_개인정보동의서.emr" />58868_9_개인정보동의서</li>
+            </ul>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -48,7 +48,7 @@ $(document).on("mouseup", ".eventCanvas", function(e) {
 
         var image = $('<img />', {class: 'Item text ItemKey_'+tempKey, src:tempImage, style: 'left:'+l+'; top:'+t+'; width:'+w+'; height:'+h+';'});
 
-        //생성된 Text에 자식 Element속성 생성
+        //생성된 Image에 자식 Element속성 생성
         for(var i=0; i<itemProperty.length; i++) {
             image.append($("<input />", {type: "hidden", name: itemProperty[i]}));
         }

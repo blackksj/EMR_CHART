@@ -57,7 +57,7 @@ Panel.prototype.createPropertyElement = function() {
     //Pen Start(구버전 호환성)
     if(this.Pens) {//펜툴 그리기
         //기존 서식에 있는 펜을 그리기 위한 캔버스
-        var penCanvas = $("<canvas />", {class: "penCanvas", width: this.Width, height: this.Height});
+        var penCanvas = $("<canvas />", {class: "penCanvas"});
         penCanvas.attr("width", this.Width);
         penCanvas.attr("height", this.Height);
         var penContext = penCanvas[0].getContext("2d");
@@ -91,5 +91,10 @@ Panel.prototype.createPropertyElement = function() {
         }
     }
     //Pen End
-    this.element.append($("<canvas />", {class: "eventCanvas", width: this.Width, height: this.Height}));
+
+    var eventCanvas = $("<canvas />", {class: "eventCanvas"});
+    eventCanvas.attr("width", this.Width);
+    eventCanvas.attr("height", this.Height);
+    this.element.append(eventCanvas);
+
 }

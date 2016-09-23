@@ -180,6 +180,9 @@ Item.prototype.createPropertyElement = function() {
     }
 
     for(var i=0; i<this.property.length; i++) {
-        this.element.append($("<input />", {type: "hidden", name: this.property[i], value: this[this.property[i]]}));
+        if(this.property[i] == "Width" || this.property[i] == "Height") //이전 소스의 경우 1px을 줄여야 선이 맞음.
+            this.element.append($("<input />", {type: "hidden", name: this.property[i], value: parseInt(this[this.property[i]])-1}));
+        else
+            this.element.append($("<input />", {type: "hidden", name: this.property[i], value: this[this.property[i]]}));
     }
 }

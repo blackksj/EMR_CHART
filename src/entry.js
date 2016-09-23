@@ -84,6 +84,18 @@ $(function() {
 
         ItemEditMode = e_ItemEditMode_Text;
     });
+
+    //서식 불러오기
+    $("#sheet_load").on("change", function() {
+        var fileList = $(this)[0].files;
+
+        var reader = new FileReader();
+        reader.readAsText(fileList[0], "utf-8");
+
+        reader.onload = function() {
+            DataLoad(reader.result);
+        }
+    });
     
     //이미지 불러오기
     $("#image_load").on("change", function() {
@@ -96,5 +108,17 @@ $(function() {
             tempImage = reader.result;
             ItemEditMode = e_ItemEditMode_Image;
         }
+    });
+
+    $(".fileListFixWrap .fileList .list li").on("click", function() {
+        console.log($(this).find("input[name=path]").val());
+        $.ajax({
+            url: '/sheet/'+$(this).find("input[name=path]").val(),
+            type: 'GET',
+            success: function(data) {
+                // Do something with the result
+                DataLoad(data);
+            }
+        });
     });
 });
