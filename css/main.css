@@ -39,9 +39,14 @@ body.unselectable {-moz-user-select: none; -webkit-user-select: none; -ms-user-s
 .rightClickPageTitleContextMenu li {font-size:12px; list-style:none; padding:3px 5px;}
 .rightClickPageTitleContextMenu li.active {color:#fff; background-color:#004F8C;}
 
-.fileListFixWrap {position:fixed; width:100%; top:100px}
+
+.fileListFixWrap {position:fixed; width:100%; z-index:9999999;}
 .fileListFixWrap .fileList {position:relative; width:726px; margin:0 auto;}
-.fileListFixWrap .fileList .list {position:absolute; left:-100px;}
-.fileListFixWrap .fileList .list li {font-size:12px;}
 
 #ui-datepicker-div {font-size:12px;}
+
+/*tree*/
+#mtree {position:absolute; padding:10px 10px 10px 0; top:0; background-color:#fff; border:thin solid #004F8C;}
+#mtree li {padding-left:10px; font-size:12px; line-height:22px; list-style:none;}
+#mtree li a {text-decoration:none; vertical-align:middle;}
+#mtree li input {vertical-align:middle;}

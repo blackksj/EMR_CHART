@@ -171,6 +171,8 @@ Item.prototype.createPropertyElement = function() {
     //|^@^| -> <br />로 변경
     if(this.Style == "1") {
         if(this.Text) while (this.Text.indexOf("|^@^|") > -1) {this.Text = this.Text.replace("|^@^|", "<br />");}
+        //html <, > 출력시 출력이 안되서 추가
+        //!!!!!특수문자 처리해야함.
         this.element.html(this.Text);
     }
 

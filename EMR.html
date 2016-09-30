@@ -11,6 +11,7 @@
     <script src="./vendor/jquery-3.1.0.min.js"></script>
     <script src="./vendor/jquery-ui.min.js"></script>
     <script src="./vendor/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="./vendor/jquery-mtree.js"></script>
     <script src="./main.js"></script> 
 </head>
 <body class="unselectable">
@@ -58,12 +59,22 @@
 <div id="contentWrap">
     <div class="fileListFixWrap">
         <div class="fileList">
-            <ul class="list">
-                <li><input type="hidden" name="path" value="83908_11_간호일지.emr" />83908_11_간호일지</li>
-                <li><input type="hidden" name="path" value="58868_9_개인정보동의서.emr" />58868_9_개인정보동의서</li>
+            <ul id="mtree" class="tree">
+
             </ul>
         </div>
     </div>
 </div>
+<script>
+$(function() {
+    $.ajax({
+        url: 'http://210.220.255.17:8080/emrtree?uid=1&ptno=28600&inout=1&gubun=5',
+        type: 'GET',
+        success: function(data) {
+            $("#mtree").mtree(null, data);
+        }
+    });
+});
+</script>
 </body>
 </html>
