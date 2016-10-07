@@ -171,8 +171,9 @@ Item.prototype.createPropertyElement = function() {
     //|^@^| -> <br />로 변경
     if(this.Style == "1") {
         if(this.Text) while (this.Text.indexOf("|^@^|") > -1) {this.Text = this.Text.replace("|^@^|", "<br />");}
-        //html <, > 출력시 출력이 안되서 추가
-        //!!!!!특수문자 처리해야함.
+
+        //html <, > 출력시 출력이 안되서 태그처리 Edit 상태가 false일때만 Edit가능할경우는 태그 변경하면 안됨.
+        if(this.Text && this.Edit == "false") this.Text = convertHtmlTag(this.Text);
         this.element.html(this.Text);
     }
 

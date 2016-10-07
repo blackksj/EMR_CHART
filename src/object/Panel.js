@@ -36,7 +36,7 @@ function Panel(parent) {
 Panel.prototype.createElement = function() {
     var panel = $("<div />", {class: "Panel"});
     this.element = panel;
-    
+
     $(this.super.element).append(panel);
 }
 

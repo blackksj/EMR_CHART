@@ -76,13 +76,22 @@ $(function() {
 
         ItemEditMode = e_ItemEditMode_Pen;
     });
-    
+
     //폰트 삽입
     $("#font_text").on("click", function() {
         clearText();
         clearCursor();
 
         ItemEditMode = e_ItemEditMode_Text;
+    });
+
+    //트리 보기
+    $("#btn_tree").on("click", function() {
+        if($("#mtree").position().left == 0) {
+            $("#mtree").animate({"left":"-150px"}, 500, function() {});
+        } else {
+            $("#mtree").animate({"left":"0"}, 500, function() {});
+        }
     });
 
     //서식 불러오기
@@ -121,4 +130,8 @@ $(function() {
             }
         });
     });
+});
+
+$(document).on("change", "#mtree :checkbox", function() {
+    treeCountUpdate();
 });

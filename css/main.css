@@ -46,7 +46,9 @@ body.unselectable {-moz-user-select: none; -webkit-user-select: none; -ms-user-s
 #ui-datepicker-div {font-size:12px;}
 
 /*tree*/
-#mtree {position:absolute; padding:10px 10px 10px 0; top:0; background-color:#fff; border:thin solid #004F8C;}
+#mtree {position:absolute; left:-150px; padding:10px 10px 10px 0; top:0; background-color:#fff; border:thin solid #004F8C;}
 #mtree li {padding-left:10px; font-size:12px; line-height:22px; list-style:none;}
 #mtree li a {text-decoration:none; vertical-align:middle;}
 #mtree li input {vertical-align:middle;}
+#mtree li label {vertical-align:middle;}
+#mtree li span {vertical-align:middle;}

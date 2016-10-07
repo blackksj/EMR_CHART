@@ -50,10 +50,13 @@
         &nbsp;&nbsp;
         <button class="fa fa-pencil" id="font_pencil" title="펜 모드"></button>
         <button class="fa fa-font" id="font_text" title="텍스트 삽입"></button>
+
+        <br />
+        <input id="btn_tree" type="button" value="트리" />
         &nbsp;&nbsp;
-        <input type="file" id="sheet_load" accept="*/*" value="서식" />
+        <input type="file" id="sheet_load" accept="*/*" value="서식" /> 서식
         <!--button class="fa fa-file-image-o" id="font_file-image-o" title="이미지 삽입"></button-->
-        <input type="file" id="image_load" accept="image/*" value="이미지" />
+        <input type="file" id="image_load" accept="image/*" value="이미지" /> 이미지
     </div>
 </div>
 <div id="contentWrap">
@@ -63,8 +66,14 @@
 
             </ul>
         </div>
+
+        <div id="sangyongguWrap">
+            <div>진료용어</div>
+
+        </div>
     </div>
 </div>
+
 <script>
 $(function() {
     $.ajax({

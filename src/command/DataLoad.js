@@ -2,7 +2,9 @@ $(function() {
     var asOpts = GetCommandArgs("PAGE_KEY|^@^|00001|^@@^|PAGE_TITLE|^@^|00002|^@@^|PAGE_LOCKED|^@^|0"
         , "PAGE_KEY,PAGE_TITLE,PAGE_DATE,PAGE_TIME,PAGE_KIND,PAGE_LOCKED,PAGE_LOCKEDNAME,PAGE_SIGN,VIEW_KIND,PAGE_SELECT,PAGE_MODIFIED,REG_NAME,PAGE_INOUT,PAGE_DEPT,PAGE_PRINT,PAGE_PRINTNAME");
 
-    DataLoad(data);
+    //console.log(asOpts);
+
+    //DataLoad(data);
 });
 
 function DataLoad(strVal) {
